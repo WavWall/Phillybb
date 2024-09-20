@@ -1,0 +1,462 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Twitter Image
+            name: twitter:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: X, key: 58'
+            label: Text
+            name: '58'
+            widget: string
+          - hint: 'Original text: About Us, key: 645efc51'
+            label: Text
+            name: 645efc51
+            widget: string
+          - hint: >-
+              Original text: Welcome to the innovative world of Chiliboats,
+              where we bring the unique and exhilarating experience of water
+              cycling to the United States! As pioneers in this field, we are
+              thrilled to introduce Chili boats to Philadelphia, our flagship
+              location. Our tours offer a distinctive blend of adventure and
+              relaxation, allowing you to explore the city's beautiful waterways
+              while enjoying a vacation-like experience right in the heart of
+              Philadelphia. , key: 4d34e0e4
+            label: Text
+            name: 4d34e0e4
+            widget: text
+          - hint: >-
+              Original text: With Chiliboats, you'll discover the city from a
+              fresh perspective, combining the thrill of cycling with the
+              serenity of floating on water. Whether you're a local looking for
+              a new way to see your city or a tourist seeking an unforgettable
+              experience, Chiliboats offers an exciting addition to
+              Philadelphia's tourism scene. Join us for a journey that promises
+              fun, fitness, and a unique way to connect with nature and the
+              city's vibrant culture., key: 137469f5
+            label: Text
+            name: 137469f5
+            widget: text
+          - hint: 'Original text: Philadelphia, key: 5c2b8a55'
+            label: Text
+            name: 5c2b8a55
+            widget: string
+          - hint: 'Original text: Book Now!, key: -13669d1e'
+            label: Text
+            name: '-13669d1e'
+            widget: string
+          - hint: 'Original text: Get Chilli, key: 666d840f'
+            label: Text
+            name: 666d840f
+            widget: string
+          - hint: 'Original text: In Philly, key: 157af343'
+            label: Text
+            name: 157af343
+            widget: string
+          - hint: 'Original text: Bring The Vaction To You., key: 332402e3'
+            label: Text
+            name: '332402e3'
+            widget: string
+          - hint: "Original text: \_Save on funds and multiply your fun with this Bahamian get away located in your back yard., key: 1d5395f7"
+            label: Text
+            name: 1d5395f7
+            widget: text
+          - hint: 'Original text: Ride Options, key: -76b7008a'
+            label: Text
+            name: '-76b7008a'
+            widget: string
+          - hint: 'Original text: Bikeboat Up, key: -7360a986'
+            label: Text
+            name: '-7360a986'
+            widget: string
+          - hint: 'Original text: See Specifications, key: -4109c83'
+            label: Text
+            name: '-4109c83'
+            widget: string
+          - hint: >-
+              Original text: Dive into a unique blend of cycling and water
+              sports with the Bikeboat Up. This innovative water bike combines
+              the comfort of a traditional bicycle with the thrill of being on
+              the water. Crafted with an aluminum structure and
+              salt-water-resistant materials, it’s designed for durability and
+              performance. With easy assembly in under 5 minutes and speeds up
+              to 10 mph (16 km/h), the Bikeboat Up offers an exhilarating,
+              eco-friendly ride. Perfect for solo adventures or fun with family
+              and friends, choose from standard, big, and tandem models to suit
+              your needs. Enjoy the ride, the fitness, and the serenity of
+              nature with Bikeboat Up., key: 11b48c92
+            label: Text
+            name: 11b48c92
+            widget: text
+          - hint: 'Original text: Bikeboat Rec, key: 74b6c91'
+            label: Text
+            name: 74b6c91
+            widget: string
+          - hint: >-
+              Original text: Explore new horizons with the Bikeboat Rec,
+              designed to maximize comfort and enjoyment on the water. Featuring
+              a catamaran configuration and ergonomic seating, this water bike
+              provides a stable and relaxing ride. With its aluminum structure,
+              salt-water-resistant materials, and ultra-rugged inflatable
+              floats, it's built for durability and performance. Easy to
+              assemble in under 5 minutes and capable of speeds up to 10 mph (16
+              km/h), the Bikeboat Rec is perfect for leisurely rides or
+              energetic adventures. Available in standard, big, and tandem
+              models to suit every need., key: -277fa9be
+            label: Text
+            name: '-277fa9be'
+            widget: text
+          - hint: 'Original text: Bikeboat Tandem, key: -1a992ad6'
+            label: Text
+            name: '-1a992ad6'
+            widget: string
+          - hint: >-
+              Original text: Share the adventure with the Bikeboat Tandem, the
+              perfect water bike for two. With its catamaran design and
+              ergonomic seating, this model offers stability and comfort on the
+              water. Made with a durable aluminum structure and
+              salt-water-resistant materials, it's built to last. Assembly takes
+              less than 9 minutes, and it reaches speeds up to 10 mph (16 km/h).
+              Ideal for couples, friends, or family, this tandem water bike
+              brings twice the fun to your aquatic adventures., key: -3a3ed7e9
+            label: Text
+            name: '-3a3ed7e9'
+            widget: text
+          - hint: 'Original text: Newsletter, key: -47761f27'
+            label: Text
+            name: '-47761f27'
+            widget: string
+          - hint: >-
+              Original text: Stay up to date on discounts, new locations , and
+              more by joining our email newsletter today., key: 64880967
+            label: Text
+            name: '64880967'
+            widget: text
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: >-
+              Original link: https://www.facebook.com/chiliboats/, key:
+              -46824033
+            label: Link
+            name: '-46824033'
+            widget: string
+          - hint: >-
+              Original link: https://www.instagram.com/chiliboats_adventures/,
+              key: 3283ccef
+            label: Link
+            name: 3283ccef
+            widget: string
+          - hint: >-
+              Original link:
+              https://fareharbor.com/embeds/book/chiliboatsphilly/items/?full-items=yes,
+              key: -6948155
+            label: Link
+            name: '-6948155'
+            widget: string
+          - hint: 'Original link: https://chiliboats.com/bikeboat-up/, key: 2a275323'
+            label: Link
+            name: 2a275323
+            widget: string
+          - hint: 'Original link: https://chiliboats.com/bikeboat-rec/, key: 1ac19150'
+            label: Link
+            name: 1ac19150
+            widget: string
+          - hint: >-
+              Original link: https://chiliboats.com/bikeboat-tandem/, key:
+              75ae373
+            label: Link
+            name: 75ae373
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: '-6ef02c5f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3836d374'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: acfb9f3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2e6a61f1'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5ab6c390'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-623484c7'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 645e5f0e
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
